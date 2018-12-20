@@ -1,0 +1,1 @@
+this is my wallpaper <br><p><img width='300' height='300' src='../../../static/images/mladmin/wallpaper.png'></p><br> and this is equation 1+2

@@ -1,0 +1,1 @@
+nalu $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ neural alu <br><p><img width='300' height='300' src='../../../static/images/mladmin/dp.jpg'></p><br>$$\rho = \sqrt{x^2 + y^2}$$
