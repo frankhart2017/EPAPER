@@ -1,0 +1,1 @@
+iot wallpaper <br><p><img width='300' height='300' src='../../../static/images/iotadmin/wallpaper.png'></p><br> acutally it is python

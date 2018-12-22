@@ -128,10 +128,26 @@
 
                     <div class="row">
 
-                      <a id="1" class="col s12 m6" href="addpost/">
+                      <a id="1" class="col s12 m4" href="addpost/">
                         <div class="card hoverable c1">
                           <div class="center-align card-content <?php echo $color; ?> white-text">
                             <span class="card-title">ADD POST</span>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a id="1" class="col s12 m4" href="readpaper/">
+                        <div class="card hoverable c1">
+                          <div class="center-align card-content <?php echo $color; ?> white-text">
+                            <span class="card-title">CURRENT POST</span>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a id="1" class="col s12 m4" href="archives/">
+                        <div class="card hoverable c1">
+                          <div class="center-align card-content <?php echo $color; ?> white-text">
+                            <span class="card-title">ARCHIVE</span>
                           </div>
                         </div>
                       </a>
