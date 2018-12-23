@@ -81,9 +81,24 @@
        fwrite($file, $content);
        fclose($file);
 
+       $topic = Array("mladmin" => "Machine Learning", "iotadmin" => "Internet of Things", "bhadmin" => "Blockchain");
+
        $sql = "INSERT INTO paper(`topic`, `filename`, `link`) VALUES('$USER_ID', '$content_filename', '$plink')";
        if(mysqli_query($conn, $sql)) {
          echo "<script> alert('Paper put to database successfully!'); </script>";
+
+         $sql = "SELECT USER_ID FROM user_table WHERE ROLE='S'";
+
+         $message = "Added paper to ".$topic[$USER_ID].":".$pname;
+
+         if($result = mysqli_query($conn,$sql)) {
+           while($row = mysqli_fetch_assoc($result)) {
+             $uid = $row['USER_ID'];
+             $sql = "INSERT INTO notification(`uid`, `notif`) VALUES('$uid', '$message')";
+             mysqli_query($conn, $sql);
+           }
+         }
+
        } else {
          echo mysqli_error($conn);
        }

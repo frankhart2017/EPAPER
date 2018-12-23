@@ -92,6 +92,27 @@
         {
           font-size: 2em;
         }
+
+        .notification-badge {
+            position: relative;
+            right: -25px;
+            top: -75px;
+            color: #00796b;
+            font-weight: bold;
+            background-color: white;;
+            margin: 0 -.8em;
+            border-radius: 50%;
+            padding: 5px 10px;
+        }
+
+        .notifi:hover {
+          background: none;
+        }
+
+        ul.drop-notifi{
+            width:30% !important;
+        }
+
         </style>
     </head>
 
@@ -104,6 +125,25 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger notifi" href="#!" data-activates="notification" data-target="dropdown-notification" data-constrainWidth="false" >
+          <i class="material-icons white-text n">notifications</i>
+            <?php
+
+              $sql = "SELECT * FROM notification WHERE uid = '$USER_ID'";
+
+              $result = mysqli_query($conn,$sql);
+
+              $count = mysqli_num_rows($result);
+
+              if($count > 0) {
+                echo '<small class="notification-badge">';
+                echo $count;
+                echo '</small>';
+              }
+
+            ?>
+        </a>
+      </li>
         <li><a class="dropdown-trigger" data-target="dropdown1">More Options</a></li>
         <li class="active"><a href="../../index.php">Logout</a></li>
       </ul>
@@ -117,6 +157,25 @@
         <li><a href="profile/">Profile</a></li>
     </ul>
 
+    <ul id='dropdown-notification' class='dropdown-content drop-notifi'>
+      <?php
+
+        $sql = "SELECT * FROM notification WHERE uid = '$USER_ID'";
+
+        if(mysqli_num_rows(mysqli_query($conn, $sql)) == 0) {
+          echo "<li><a href='#'>No notifications!</a></li>";
+        } else {
+          if($result = mysqli_query($conn, $sql)) {
+            while($row = mysqli_fetch_assoc($result)) {
+              echo "<li><a href='#'><strong>".$row['notif']."</strong></a></li>";
+            }
+          }
+          $sql = "DELETE FROM notification WHERE uid = '$USER_ID'";
+          mysqli_query($conn, $sql);
+        }
+
+      ?>
+    </ul>
 
     <div class="container">
       <div class="row">
