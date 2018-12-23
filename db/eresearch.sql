@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 20, 2018 at 02:24 PM
+-- Generation Time: Dec 23, 2018 at 03:59 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `epaper`
+-- Database: `eresearch`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,10 @@ INSERT INTO `comments` (`id`, `pid`, `uid`, `comment`) VALUES
 (11, 3, 'RA1611003010876', 'hello comment on archived post'),
 (12, 4, 'RA1611003010876', 'ooo this is python'),
 (13, 3, 'RA1611003010876', 'comment'),
-(14, 4, 'RA1611003010984', 'ok ok this');
+(14, 4, 'RA1611003010984', 'ok ok this'),
+(16, 4, 'Machine Learning Admin', 'yeah this is correct'),
+(17, 3, 'Machine Learning Admin', 'ok this may be incorrect'),
+(18, 5, 'IoT Admin', 'Test iot post');
 
 -- --------------------------------------------------------
 
@@ -66,6 +69,18 @@ INSERT INTO `dept_table` (`DEPT_ID`, `DEPT_NAME`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `uid` text NOT NULL,
+  `notif` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `paper`
 --
 
@@ -83,7 +98,9 @@ CREATE TABLE `paper` (
 
 INSERT INTO `paper` (`id`, `topic`, `filename`, `link`, `putdate`) VALUES
 (3, 'mladmin', 'nalu.txt', 'https://arxiv.org/pdf/1808.00508', '2018-12-11 18:30:00'),
-(4, 'mladmin', 'narme.txt', 'www.google.com', '2018-12-19 18:30:00');
+(4, 'mladmin', 'narme.txt', 'www.google.com', '2018-12-19 18:30:00'),
+(5, 'iotadmin', 'test iot paper.txt', 'www.google.com', '2018-12-22 17:38:39'),
+(12, 'bhadmin', 'blockchain.txt', 'www.google.com', '2018-12-23 15:43:42');
 
 -- --------------------------------------------------------
 
@@ -192,6 +209,12 @@ ALTER TABLE `dept_table`
   ADD PRIMARY KEY (`DEPT_ID`);
 
 --
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `paper`
 --
 ALTER TABLE `paper`
@@ -223,7 +246,7 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dept_table`
@@ -232,10 +255,16 @@ ALTER TABLE `dept_table`
   MODIFY `DEPT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `security_questions_table`
