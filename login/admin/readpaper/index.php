@@ -48,6 +48,8 @@
 ?>
 <html>
     <head>
+      <title><?php echo $paper_name; ?></title>
+
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="../../../css/buttons.css"  media="screen,projection"/>
