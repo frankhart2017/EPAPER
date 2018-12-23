@@ -22,6 +22,8 @@
 ?>
 <html>
     <head>
+      <title><?php echo $firstname."'s profile"; ?></title>
+
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="../../../css/material-icons.css" rel="stylesheet">
