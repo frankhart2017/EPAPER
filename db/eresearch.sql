@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 23, 2018 at 03:59 PM
+-- Generation Time: Dec 24, 2018 at 09:18 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `eresearch`
+-- Database: `epaper`
 --
 
 -- --------------------------------------------------------
@@ -89,18 +89,21 @@ CREATE TABLE `paper` (
   `topic` text NOT NULL,
   `filename` text NOT NULL,
   `link` text NOT NULL,
-  `putdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `putdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `question` text NOT NULL,
+  `inputs` text NOT NULL,
+  `outputs` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `paper`
 --
 
-INSERT INTO `paper` (`id`, `topic`, `filename`, `link`, `putdate`) VALUES
-(3, 'mladmin', 'nalu.txt', 'https://arxiv.org/pdf/1808.00508', '2018-12-11 18:30:00'),
-(4, 'mladmin', 'narme.txt', 'www.google.com', '2018-12-19 18:30:00'),
-(5, 'iotadmin', 'test iot paper.txt', 'www.google.com', '2018-12-22 17:38:39'),
-(12, 'bhadmin', 'blockchain.txt', 'www.google.com', '2018-12-23 15:43:42');
+INSERT INTO `paper` (`id`, `topic`, `filename`, `link`, `putdate`, `question`, `inputs`, `outputs`) VALUES
+(3, 'mladmin', 'nalu.txt', 'https://arxiv.org/pdf/1808.00508', '2018-12-11 18:30:00', '', '', ''),
+(4, 'mladmin', 'narme.txt', 'www.google.com', '2018-12-24 09:14:47', 'Question number 1, implement a two layer nn using deep genetic network architecture', 'test case input 1; test case input 2', 'output 1; output 2'),
+(5, 'iotadmin', 'test iot paper.txt', 'www.google.com', '2018-12-22 17:38:39', '', '', ''),
+(12, 'bhadmin', 'blockchain.txt', 'www.google.com', '2018-12-23 15:43:42', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -258,13 +261,13 @@ ALTER TABLE `dept_table`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `security_questions_table`
