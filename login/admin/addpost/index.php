@@ -81,9 +81,13 @@
        fwrite($file, $content);
        fclose($file);
 
+       $question = $_POST['question'];
+       $inputs = $_POST['inputs'];
+       $outputs = $_POST['outputs'];
+
        $topic = Array("mladmin" => "Machine Learning", "iotadmin" => "Internet of Things", "bhadmin" => "Blockchain");
 
-       $sql = "INSERT INTO paper(`topic`, `filename`, `link`) VALUES('$USER_ID', '$content_filename', '$plink')";
+       $sql = "INSERT INTO paper(`topic`, `filename`, `link`, `question`, `inputs`, `outputs`) VALUES('$USER_ID', '$content_filename', '$plink', '$question', '$inputs', '$outputs')";
        if(mysqli_query($conn, $sql)) {
          echo "<script> alert('Paper put to database successfully!'); </script>";
 
@@ -286,6 +290,27 @@
                     <textarea name='content' id="content" class="materialize-textarea"></textarea>
                     <label for="content">Content (html tags allowed)</label>
                   </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12 m12">
+                    <textarea name='question' id="question" class="materialize-textarea"></textarea>
+                    <label for="content">Question</label>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="input-field col s8 m6">
+                    <input name="inputs" id="inputs" placeholder="Enter test case inputs separated by ;" type="text" class="validate" data-length="200" autofocus>
+                    <label for="pname">Test case inputs</label>
+                  </div>
+
+                  <div class="input-field col s8 m6">
+                    <input name="outputs" id="outputs" placeholder="Enter test case outputs separated by ;" type="text" class="validate" data-length="200" autofocus>
+                    <label for="plink">Test case outputs</label>
+                  </div>
+
                 </div>
 
                 <div class="row center">

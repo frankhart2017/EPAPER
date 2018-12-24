@@ -154,7 +154,7 @@
                   </div>
                 </a>
 
-                <a id="1" class="col s8 m4" href="readpaper">
+                <a id="1" class="col s8 m4" href="../implement/">
                   <div class="card hoverable c1">
                     <div class="center-align card-content <?php echo $color; ?> white-text">
                       <span class="card-title">IMPLEMENT</span>
