@@ -111,6 +111,7 @@
          <!-- Dropdown Structure -->
          <ul id="dropdown1" class="dropdown-content">
              <li><a href="../">Home</a></li>
+             <li><a href="../identify/">Identify Interest</a></li>
              <li><a href="#">Profile</a></li>
          </ul>
 
