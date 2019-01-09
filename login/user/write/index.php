@@ -14,16 +14,15 @@
 ?>
 <html>
     <head>
-      <title>IDENTIFY INTEREST</title>
+      <title>WRITE RESEARCH PAPER</title>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="../../css/material-icons.css" rel="stylesheet">
 
       <script type="text/javascript" src="../../../js/jquery-3.1.0.min.js"></script>
       <script type="text/javascript" src="../../../js/materialize.min.js"></script>
       <script src="../../../js/d3.min.js"></script>
-      <script type="text/javascript" src="donut.js"></script>
+      <script type="text/javascript" src="donut-research.js"></script>
 
       <script type="text/javascript">
 
