@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 20, 2019 at 09:45 AM
+-- Generation Time: Jan 27, 2019 at 10:21 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -496,6 +496,73 @@ INSERT INTO `work` (`id`, `question`) VALUES
 (35, 'To what degree, would you enjoy...  calculating a business firm\'s earnings, expenses and taxes owed?'),
 (36, 'To what degree, would you enjoy...  working on a team to counsel and help families cope with health or financial problems?');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `write`
+--
+
+CREATE TABLE `write` (
+  `id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `topic` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `write`
+--
+
+INSERT INTO `write` (`id`, `question`, `topic`) VALUES
+(1, 'What was done ? What was found ?', 'abstract'),
+(2, 'What is the problem this paper addresses ? ', 'abstract'),
+(3, 'What other approaches exist ? ', 'abstract'),
+(4, 'What can we do now that we couldn’t do before? Quantify if possible.', 'abstract'),
+(5, 'What was the significance of this work and what problem can change the world ?', 'abstract'),
+(6, 'Why was it done ?', 'abstract'),
+(7, 'Why is this problem hard ? and /or the difficulty other solutions face ? ', 'abstract'),
+(8, 'What did you discover? or How did you approach the problem differently? ', 'abstract'),
+(9, 'When and where was it done ? (', 'abstract'),
+(10, 'Who/Whom got benefitted ? ', 'abstract'),
+(11, 'What is the specific detail about the solution.', 'abstract'),
+(12, 'What is a quick gist of the evidence (say a proof, an implementation or quantitative result) we have for our approach.', 'abstract'),
+(13, 'What is the rationale for this study ? ', 'introduction'),
+(14, 'What is still unknown or still needs a solution', 'introduction'),
+(15, 'What is the importance of the study? or Why was this worth doing in the first place? (', 'introduction'),
+(16, 'What is already available?', 'introduction'),
+(17, 'What problem is identified? and the main outcomes of this research and why is it unique? ', 'introduction'),
+(18, 'What is the Basic Concept?', 'introduction'),
+(19, 'What solution we propose? or What exactly is the predicted result of the entire project ? ', 'introduction'),
+(20, 'What was the reasons that led us to select this hypothesis?', 'introduction'),
+(21, 'Why did we use this particular organism or system? ', 'introduction'),
+(22, 'What are its advantages? (suitability from a theoretical point of view as well as indicate practical reasons for using it) ', 'introduction'),
+(23, 'What is the brief description of the experimental design? and how it accomplished the stated objectives?', 'introduction'),
+(24, 'How is the rest of the research paper organized?', 'introduction'),
+(29, 'What are the existing works in this field and why isn’t it already solved? ', 'analysis'),
+(30, 'What did we understand from the existing work? ', 'analysis'),
+(31, 'What is our analysis of the existing work?', 'analysis'),
+(32, 'What is our Identified research work, its depth and why we have chosen this apporach? ', 'analysis'),
+(33, 'What are all the Tools / Technologies / Equipment’s / Models / Dataset / Tasks / knowledge / Skills / Abilities / Attitude / Values required for our research? and why did we select them ?', 'analysis'),
+(34, 'What is the overall layout / outline and Plan of our study?', 'design'),
+(35, 'What is our Step-by-step study conduction procedure?', 'design'),
+(36, 'What were our sample / Initial Prototype tests? ', 'design'),
+(37, 'What were our opening points and closing points of our research study?', 'design'),
+(38, 'What is the created evaluation strategy for our study? (', 'design'),
+(39, 'What is that we created as a new research content? ', 'development'),
+(40, 'What new demonstrations or actual experimentation did we create?', 'development'),
+(41, 'What methods are used to gather all data, analysis, plots and tables?', 'development'),
+(42, 'What are the test strategy adopted and how did we plan to demonstrate the same?', 'development'),
+(43, 'What is the procedure we followed for the development / delivery / data collection etc ?', 'implementation'),
+(44, 'How did we create the research sequence?', 'implementation'),
+(45, 'How did we measure reactions, collect data, check accuracy and test?', 'implementation'),
+(46, 'What did we evaluate in this study ? ', 'evaluation'),
+(47, 'How does our finding compare / contrast / improve itself with those of others?', 'evaluation'),
+(48, 'Are there any unexpected findings / innovations?', 'evaluation'),
+(49, 'What did we learn from the results and what can we interpret as findings, what is its significance? ', 'evaltuation'),
+(50, 'Are there any limitations / discrepancies / generalizability / interpretations etc ?', 'evaluation'),
+(51, 'What did we expect and what did we find? ', 'conclusion'),
+(52, 'What is the significance that we could derive from this study and why did it occur?', 'conclusion'),
+(53, 'Who all could benefit and what else could be improved for further study?', 'conclusion');
+
 --
 -- Indexes for dumped tables
 --
@@ -585,6 +652,12 @@ ALTER TABLE `work`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `write`
+--
+ALTER TABLE `write`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -665,3 +738,9 @@ ALTER TABLE `topics`
 --
 ALTER TABLE `work`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `write`
+--
+ALTER TABLE `write`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
