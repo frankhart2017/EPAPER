@@ -120,7 +120,10 @@
         }
 
         </style>
-          <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+
+        <!-- <script src="ckeditor5-build-classic/ckeditor.js"></script> -->
+        <!-- <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script> -->
+        <script src="ckeditor/ckeditor.js"></script>
     </head>
 
     <body>
@@ -154,18 +157,76 @@
         M.AutoInit();
 
     </script>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card z-depth-2">
+             <div id="l1" class="login center-align <?php echo $color; ?> white-text">ABSTRACT</div>
+            <div class="card-content">
+                <div class="row mindset" style="margin-left: 2%;">
+                  <?php
 
-           <textarea name="editor1" id="editor1" rows="10" cols="80">
-               This is my textarea to be replaced with CKEditor.
-               <?php
-               $i =1;
-               echo "a++".$i; ?>
-           </textarea>
-           <script>
-               // Replace the <textarea id="editor1"> with a CKEditor
-               // instance, using default configuration.
-               CKEDITOR.replace( 'editor1' );
-           </script>
+                    $sql = "SELECT * FROM `write` WHERE `topic` = 'analysis'";
+                    $counter = 1;
+                    $data = "";
+                    if($result = mysqli_query($conn, $sql)) {
+                      while($row = mysqli_fetch_assoc($result)) {
+                        echo "<p><strong>".$counter.")&nbsp;".$row['question']."</strong></p>";
+                        echo "<br>";
+                        $name = "editor".$counter;
+                        $counter++;
+                        echo "
+                        <textarea class='ckeditor' name=$name id=$name rows='10' cols'80'>
+                        </textarea>
+                        <script>
+                            CKEDITOR.replace( $name,{
+                             } );
+
+                        </script>
+
+                        ";
+                        echo "<br>";
+
+                      }
+                    }
+
+                  ?>
+
+
+                  <div class="col s4 m2">
+                    <form method="post">
+                      <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
+                    </form>
+
+
+                  </div>
+                  <script>
+                  function myFunction(){
+                    var data = "";
+                    for(var i =1;i<20;i++){
+                      var name = "editor"+i;
+                      data = data + CKEDITOR.instances[name].getData();
+                    }
+                    var file = new File("txtFile.txt");
+                    file.open(w);
+                    file.write(data);
+                    file.close();
+                    alert(data);
+
+
+
+
+
+                  }
+                  </script>
+
+                </div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </body>
   </html>

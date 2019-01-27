@@ -14,7 +14,7 @@
 ?>
 <html>
     <head>
-      <title>Learning</title>
+      <title>Abstract</title>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +23,6 @@
       <script type="text/javascript" src="../../../js/jquery-3.1.0.min.js"></script>
       <script type="text/javascript" src="../../../js/materialize.min.js"></script>
 
-      <title>IDENTIFY INTEREST</title>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -166,16 +165,15 @@
                 <div class="row mindset" style="margin-left: 2%;">
                   <?php
 
-                    $sql = "SELECT * FROM mindset";
+                    $sql = "SELECT * FROM `write` WHERE `topic` = 'abstract'";
                     $counter = 1;
                     $data = "";
                     if($result = mysqli_query($conn, $sql)) {
                       while($row = mysqli_fetch_assoc($result)) {
-                        echo "<p><strong>".$row['id'].")&nbsp;".$row['question']."</strong></p>";
+                        echo "<p><strong>".$counter.")&nbsp;".$row['question']."</strong></p>";
                         echo "<br>";
                         $name = "editor".$counter;
                         $counter++;
-                        if($row['type'] == 0){
                         echo "
                         <textarea class='ckeditor' name=$name id=$name rows='10' cols'80'>
                         </textarea>
@@ -186,28 +184,7 @@
                         </script>
 
                         ";
-                        // $('#submit').click(function(){
-                        //   var htmlData = CKEDITOR.instances.editor1.getData();
-                        //   blob = new Blob([htmlData], { type: 'text/html' });
-                        //   var data = URL.createObjectURL(blob);
-                        //   $(this)
-                        //   .attr({
-                        //     'download': "test.html",
-                        //     'href': data
-                        //   });
-                        // });
-
-
-                      }else {
-                        echo "
-                        <textarea class = 'ckeditor' name=$name id=$name rows='10' cols='80'>
-                        </textarea>
-                        <script>
-                            CKEDITOR.replace( $name,{
-                               } );
-                        </script>
-                        ";
-                      }
+                        echo "<br>";
 
                       }
                     }
@@ -241,13 +218,6 @@
 
                   }
                   </script>
-
-
-
-
-
-
-
 
                 </div>
 
