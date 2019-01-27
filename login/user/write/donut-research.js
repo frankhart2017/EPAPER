@@ -1,28 +1,28 @@
 $(document).ready(function(){
 
-
-
-  render_chart();
-
-  // if(completion_status == "0"){
-  //
-  //   $('.tap-target').tapTarget('open');
-  //
-  // }
-  //
-  // $("#menu").addClass("hide");
-  //
-  // if(completion_status != "1"){
-  //
-  //   $("#detailed_report").addClass("hide");
-  //
-  // }
+  $.ajax({
+      type: 'POST',
+      data: { 'topic': 'abstract', },
+      url: 'getstatus.php',
+      dataType: 'json',
+      success: function(codedata)
+      {
+          if(codedata['error'] == 1) {
+            M.toast({html: codedata['errorMsg'], classes: 'red'});
+          } else if(codedata['error'] == 0) {
+            var colors = codedata['colors'];
+            render_chart(colors);
+          } else {
+            M.toast({html: "Error, contact admin!", classes: 'red'});
+          }
+      }
+  });
 
 });
 
 function  render_chart(colors = [0, 0, 0, 0, 0, 0, 0, 0]){
 
-var color_code = ["#f44336", "#ffeb3b", "#4caf50"];
+var color_code = ["#f44336", "#ffd54f", "#4caf50"];
 
 var data = [
         {label:"Abstract",count:12.5, percentage:12.5,color: color_code[colors[0]]},
@@ -77,28 +77,148 @@ var data = [
        //to direct to pages
       .on("click", function(d,i){
         if(d.data.label == "Abstract") {
-          window.location.href = "abstract.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '0', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "abstract.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Introduction") {
-          window.location.href = "introduction.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '1', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "introduction.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Analysis") {
-          window.location.href = "analysis.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '2', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "analysis.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Design") {
-          window.location.href = "design.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '3', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "design.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Development") {
-          window.location.href = "development.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '4', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "development.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Implement") {
-          window.location.href = "implement.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '5', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "implement.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Evaluation") {
-          window.location.href = "evaluation.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '6', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "evaluation.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Conclusion") {
-          window.location.href = "conclusion.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '7', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "conclusion.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
       })
       .on("mousemove",function(d){
@@ -121,28 +241,148 @@ var data = [
     //to direct to pages
     .on("click", function(d,i){
         if(d.data.label == "Abstract") {
-          window.location.href = "abstract.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '0', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "abstract.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Introduction") {
-          window.location.href = "introduction.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '1', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "introduction.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Analysis") {
-          window.location.href = "analysis.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '2', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "analysis.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Design") {
-          window.location.href = "design.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '3', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "design.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Development") {
-          window.location.href = "development.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '4', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "development.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Implement") {
-          window.location.href = "implement.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '5', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "implement.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Evaluation") {
-          window.location.href = "evaluation.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '6', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "evaluation.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
         if(d.data.label == "Conclusion") {
-          window.location.href = "conclusion.php";
+          $.ajax({
+              type: 'POST',
+              data: { 'topic': '7', },
+              url: 'poststatus.php',
+              dataType: 'json',
+              success: function(codedata)
+              {
+                  if(codedata['error'] == 1) {
+                    M.toast({html: codedata['errorMsg'], classes: 'red'});
+                  } else if(codedata['error'] == 0) {
+                    window.location.href = "conclusion.php";
+                  } else {
+                    M.toast({html: "Error, contact admin!", classes: 'red'});
+                  }
+              }
+          });
         }
       })
 

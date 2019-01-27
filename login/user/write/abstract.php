@@ -191,7 +191,6 @@
 
                   ?>
 
-
                   <div class="col s4 m2">
                     <form method="post">
                       <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
@@ -211,10 +210,6 @@
                     file.write(data);
                     file.close();
                     alert(data);
-
-
-
-
 
                   }
                   </script>

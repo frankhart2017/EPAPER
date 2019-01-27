@@ -14,7 +14,7 @@
 ?>
 <html>
     <head>
-      <title>Learning</title>
+      <title>Conclusion</title>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +23,6 @@
       <script type="text/javascript" src="../../../js/jquery-3.1.0.min.js"></script>
       <script type="text/javascript" src="../../../js/materialize.min.js"></script>
 
-      <title>IDENTIFY INTEREST</title>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -120,6 +119,10 @@
         }
 
         </style>
+
+        <!-- <script src="ckeditor5-build-classic/ckeditor.js"></script> -->
+        <!-- <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script> -->
+        <script src="ckeditor/ckeditor.js"></script>
     </head>
 
     <body>
@@ -153,6 +156,71 @@
         M.AutoInit();
 
     </script>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card z-depth-2">
+             <div id="l1" class="login center-align <?php echo $color; ?> white-text">CONCLUSION</div>
+            <div class="card-content">
+                <div class="row mindset" style="margin-left: 2%;">
+                  <?php
+
+                    $sql = "SELECT * FROM `write` WHERE `topic` = 'conclusion'";
+                    $counter = 1;
+                    $data = "";
+                    if($result = mysqli_query($conn, $sql)) {
+                      while($row = mysqli_fetch_assoc($result)) {
+                        echo "<p><strong>".$counter.")&nbsp;".$row['question']."</strong></p>";
+                        echo "<br>";
+                        $name = "editor".$counter;
+                        $counter++;
+                        echo "
+                        <textarea class='ckeditor' name=$name id=$name rows='10' cols'80'>
+                        </textarea>
+                        <script>
+                            CKEDITOR.replace( $name,{
+                             } );
+
+                        </script>
+
+                        ";
+                        echo "<br>";
+
+                      }
+                    }
+
+                  ?>
+
+                  <div class="col s4 m2">
+                    <form method="post">
+                      <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
+                    </form>
+
+
+                  </div>
+                  <script>
+                  function myFunction(){
+                    var data = "";
+                    for(var i =1;i<20;i++){
+                      var name = "editor"+i;
+                      data = data + CKEDITOR.instances[name].getData();
+                    }
+                    var file = new File("txtFile.txt");
+                    file.open(w);
+                    file.write(data);
+                    file.close();
+                    alert(data);
+
+                  }
+                  </script>
+
+                </div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </body>
   </html>

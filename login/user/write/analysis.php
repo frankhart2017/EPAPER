@@ -14,7 +14,7 @@
 ?>
 <html>
     <head>
-      <title>Learning</title>
+      <title>Analysis</title>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +23,6 @@
       <script type="text/javascript" src="../../../js/jquery-3.1.0.min.js"></script>
       <script type="text/javascript" src="../../../js/materialize.min.js"></script>
 
-      <title>IDENTIFY INTEREST</title>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -161,7 +160,7 @@
       <div class="row">
         <div class="col s12">
           <div class="card z-depth-2">
-             <div id="l1" class="login center-align <?php echo $color; ?> white-text">ABSTRACT</div>
+             <div id="l1" class="login center-align <?php echo $color; ?> white-text">ANALYSIS</div>
             <div class="card-content">
                 <div class="row mindset" style="margin-left: 2%;">
                   <?php
@@ -192,7 +191,6 @@
 
                   ?>
 
-
                   <div class="col s4 m2">
                     <form method="post">
                       <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
@@ -212,10 +210,6 @@
                     file.write(data);
                     file.close();
                     alert(data);
-
-
-
-
 
                   }
                   </script>
