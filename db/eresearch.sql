@@ -2,8 +2,8 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jan 27, 2019 at 10:21 AM
+-- Host: localhost:3306
+-- Generation Time: Jan 27, 2019 at 07:27 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -446,6 +446,28 @@ INSERT INTO `user_table` (`USER_ID`, `FIRST_NAME`, `LAST_NAME`, `EMAIL_ID`, `MOB
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_write`
+--
+
+CREATE TABLE `user_write` (
+  `id` int(11) NOT NULL,
+  `uid` text NOT NULL,
+  `topic` text NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_write`
+--
+
+INSERT INTO `user_write` (`id`, `uid`, `topic`, `status`) VALUES
+(5, 'RA1611003010876', '6', 1),
+(6, 'RA1611003010876', '1', 1),
+(7, 'RA1611003010876', '4', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `work`
 --
 
@@ -546,7 +568,7 @@ INSERT INTO `write` (`id`, `question`, `topic`) VALUES
 (35, 'What is our Step-by-step study conduction procedure?', 'design'),
 (36, 'What were our sample / Initial Prototype tests? ', 'design'),
 (37, 'What were our opening points and closing points of our research study?', 'design'),
-(38, 'What is the created evaluation strategy for our study? (', 'design'),
+(38, 'What is the created evaluation strategy for our study? \r\n', 'design'),
 (39, 'What is that we created as a new research content? ', 'development'),
 (40, 'What new demonstrations or actual experimentation did we create?', 'development'),
 (41, 'What methods are used to gather all data, analysis, plots and tables?', 'development'),
@@ -646,6 +668,12 @@ ALTER TABLE `user_table`
   ADD PRIMARY KEY (`USER_ID`);
 
 --
+-- Indexes for table `user_write`
+--
+ALTER TABLE `user_write`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `work`
 --
 ALTER TABLE `work`
@@ -732,6 +760,12 @@ ALTER TABLE `thinking`
 --
 ALTER TABLE `topics`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user_write`
+--
+ALTER TABLE `user_write`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `work`
