@@ -200,20 +200,59 @@
                   </div>
                   <script>
 
-                  $(document).ready(function(){
-                    $('#submit').click(function(){
-                      var details = "hello";
-                      var blob = new Blob([details],
-                      {
-                        type: "application/json;utf-8"
+                  function download(filename, text) {
+                    var element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                    element.setAttribute('download', filename);
+
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+
+                    element.click();
+
+                    document.body.removeChild(element);
+                  }
+
+                    $(document).ready(function(){
+                      $('#submit').click(function(){
+                      var data = "";
+                      for(var i =1;i<=5;i++){
+                        var name = "editor"+i;
+                        text = "<p>" + CKEDITOR.instances[name].document.getBody().getText() + "</p>\n";
+                        data = data + text;
                       }
-                    )
-                    var userLink = document.createElement('a');
-                    userLink.setAttribute('download',"textfile.txt");
-                    userLink.setAttribute('href',window.URL.createObjectURL(blob));
-                    userLink.click();
-                  });
-                });
+                        download("Analysis.txt",data);
+
+                        $.ajax({
+                            type: 'POST',
+                            data:
+                            {
+                              'topic': '2',
+                            },
+                            url: 'updateStatus.php',
+                            dataType: 'json',
+                            success: function(codedata)
+                            {
+                                if(codedata['error'] == 1)
+                                {
+                                  //Error Occured
+                                  M.toast({html: codedata['errorMsg']});
+                                }
+                                else if(codedata['error'] == 0)
+                                {
+                                 //No Error Occured
+                                  window.location = "index.php";
+                                }
+                                else
+                                {
+                                  window.alert("Something is Wrong... Contact Admin");
+                                }
+                            }
+                          });
+                      });
+
+
+                    });
 
                   </script>
 

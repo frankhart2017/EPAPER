@@ -9,6 +9,13 @@
 
     $topic = $_REQUEST['topic'];
 
+    $sql = "SELECT `id` FROM `user_write` WHERE `uid` = '$USER_ID' AND `topic` = '$topic'";
+
+    if(mysqli_num_rows(mysqli_query($conn, $sql)) > 0) {
+      echo json_encode($final_result);
+      return;
+    }
+
     $sql = "INSERT INTO user_write(`uid`, `topic`, `status`) VALUES('$USER_ID', '$topic', '1')";
 
     $result = mysqli_query($conn, $sql);

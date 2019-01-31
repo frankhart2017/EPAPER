@@ -216,44 +216,46 @@
                     document.body.removeChild(element);
                   }
 
-                  $(document).ready(function(){
-                    $('#submit').click(function(){
-                    //   var details = "hello";
-                    //   alert(details);
-                    //   var blob = new Blob([details],
-                    //   {
-                    //     type: "application/json;utf-8"
-                    //   }
-                    // )
-                    // var userLink = document.createElement('a');
-                    // userLink.setAttribute('download',"textfile.txt");
-                    // userLink.setAttribute('href',window.URL.createObjectURL(blob));
-                    // userLink.click();
-                    var data = "";
-                    for(var i =1;i<=12;i++){
-                      var name = "editor"+i;
-                      text = "<p>" + CKEDITOR.instances[name].document.getBody().getText() + "</p>\n";
-                      data = data + text;
-                    }
-                      download("hello.txt",data);
-                    });
-                  });
-
-                  </script>
-
-
-                   <!-- <script>
-                    function myFunction(){
+                    $(document).ready(function(){
+                      $('#submit').click(function(){
                       var data = "";
                       for(var i =1;i<=12;i++){
                         var name = "editor"+i;
-                        data = data + CKEDITOR.instances[name].getData();
+                        text = "<p>" + CKEDITOR.instances[name].document.getBody().getText() + "</p>\n";
+                        data = data + text;
                       }
-                      var blob = new Blob(["test text"], {type: "text/plain;charset=utf-8"});
-                      saveAs(blob, "testfile1.txt");
+                        download("Abstract.txt",data);
 
-                    }
-                  </script> -->
+                        $.ajax({
+                            type: 'POST',
+                            data:
+                            {
+                              'topic': '0',
+                            },
+                            url: 'updateStatus.php',
+                            dataType: 'json',
+                            success: function(codedata)
+                            {
+                                if(codedata['error'] == 1)
+                                {
+                                  //Error Occured
+                                  M.toast({html: codedata['errorMsg']});
+                                }
+                                else if(codedata['error'] == 0)
+                                {
+                                 //No Error Occured
+                                  window.location = "index.php";
+                                }
+                                else
+                                {
+                                  window.alert("Something is Wrong... Contact Admin");
+                                }
+                            }
+                          });
+                      });
+                    });
+
+                  </script>
 
 
                 </div>
