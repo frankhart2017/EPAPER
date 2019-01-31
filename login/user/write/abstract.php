@@ -203,21 +203,41 @@
 
                   <script>
 
+                  function download(filename, text) {
+                    var element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                    element.setAttribute('download', filename);
+
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+
+                    element.click();
+
+                    document.body.removeChild(element);
+                  }
+
                   $(document).ready(function(){
                     $('#submit').click(function(){
-                      var details = "hello";
-                      alert(details);
-                      var blob = new Blob([details],
-                      {
-                        type: "application/json;utf-8"
-                      }
-                    )
-                    var userLink = document.createElement('a');
-                    userLink.setAttribute('download',"textfile.txt");
-                    userLink.setAttribute('href',window.URL.createObjectURL(blob));
-                    userLink.click();
+                    //   var details = "hello";
+                    //   alert(details);
+                    //   var blob = new Blob([details],
+                    //   {
+                    //     type: "application/json;utf-8"
+                    //   }
+                    // )
+                    // var userLink = document.createElement('a');
+                    // userLink.setAttribute('download',"textfile.txt");
+                    // userLink.setAttribute('href',window.URL.createObjectURL(blob));
+                    // userLink.click();
+                    var data = "";
+                    for(var i =1;i<=12;i++){
+                      var name = "editor"+i;
+                      text = "<p>" + CKEDITOR.instances[name].document.getBody().getText() + "</p>\n";
+                      data = data + text;
+                    }
+                      download("hello.txt",data);
+                    });
                   });
-                });
 
                   </script>
 
