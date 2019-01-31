@@ -11,6 +11,7 @@
     include_once("../../../includes/config.php");
     include_once("../../../includes/general.php");
 
+
 ?>
 <html>
     <head>
@@ -193,26 +194,47 @@
 
                   <div class="col s4 m2">
                     <form method="post">
-                      <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
+                      <a class="btnsize waves-effect waves-light btn <?php echo $color?>"  id="submit" >Save</a>
                     </form>
 
 
                   </div>
-                  <script>
-                  function myFunction(){
-                    var data = "";
-                    for(var i =1;i<20;i++){
-                      var name = "editor"+i;
-                      data = data + CKEDITOR.instances[name].getData();
-                    }
-                    var file = new File("txtFile.txt");
-                    file.open(w);
-                    file.write(data);
-                    file.close();
-                    alert(data);
 
-                  }
+
+                  <script>
+
+                  $(document).ready(function(){
+                    $('#submit').click(function(){
+                      var details = "hello";
+                      alert(details);
+                      var blob = new Blob([details],
+                      {
+                        type: "application/json;utf-8"
+                      }
+                    )
+                    var userLink = document.createElement('a');
+                    userLink.setAttribute('download',"textfile.txt");
+                    userLink.setAttribute('href',window.URL.createObjectURL(blob));
+                    userLink.click();
+                  });
+                });
+
                   </script>
+
+
+                   <!-- <script>
+                    function myFunction(){
+                      var data = "";
+                      for(var i =1;i<=12;i++){
+                        var name = "editor"+i;
+                        data = data + CKEDITOR.instances[name].getData();
+                      }
+                      var blob = new Blob(["test text"], {type: "text/plain;charset=utf-8"});
+                      saveAs(blob, "testfile1.txt");
+
+                    }
+                  </script> -->
+
 
                 </div>
 
