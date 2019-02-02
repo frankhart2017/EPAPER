@@ -5,16 +5,128 @@
         echo "ERROR IN SESSION";
         exit;
      }
-    $USER_ID=$_SESSION['USER_ID'];
+    $USER_ID = strtoupper($_SESSION['USER_ID']);
     $_SESSION['TEST_ON'] = "no";
 
     include_once("../../../includes/config.php");
     include_once("../../../includes/general.php");
 
+    include("encrypt.php");
+
+    $topic = '6';
+    $topicName = 'evaluation';
+    $size = 5;
+
+    if(isset($_POST['save'])) {
+      if(!empty($_POST['passcode'])) {
+        $text = "";
+        for($i=1; $i<=$size; $i++) {
+          $text .= dec_enc("encrypt", $_POST['editor'.$i], $_POST['passcode']) . "~+~";
+        }
+
+        $sql = "UPDATE `user_write` SET `status` = '2', `text` = '$text' WHERE `topic` = '$topic' AND `uid` = '$USER_ID'";
+        if(mysqli_query($conn, $sql)) {
+          echo "<script> alert('Saved successfully!'); </script>";
+          echo "<script> location.href = 'index.php'; </script>";
+        } else {
+          echo mysqli_error($conn);
+        }
+
+      } else {
+        echo "<script> alert('Enter secret key!'); </script>";
+      }
+    }
+
+    function displayForm($text = Array()) {
+      include("../../../includes/config.php");
+      include("../../../includes/general.php");
+
+      global $topicName;
+
+      $sql = "SELECT * FROM `write` WHERE `topic` = '$topicName'";
+      $counter = 1;
+      $data = "";
+      $i = 0;
+
+      if($result = mysqli_query($conn, $sql)) {
+        while($row = mysqli_fetch_assoc($result)) {
+          echo "<p><strong>".$counter.")&nbsp;".$row['question']."</strong></p>";
+          echo "<br>";
+          $name = "editor".$counter;
+          $counter++;
+          echo "<form method='post'>
+          <textarea class='ckeditor' name=$name id=$name rows='10' cols'80'>";
+          if(sizeof($text) > 0) {
+            echo $text[$i];
+            $i++;
+          }
+          echo "
+          </textarea>
+          <script>
+              CKEDITOR.replace( $name,{
+               } );
+
+          </script>
+
+          ";
+          echo "<br>";
+
+        }
+      }
+
+      echo '
+          <div class="input-field col s8 m4">
+            <input name="passcode" id="passcode" type="text" class="validate" autocomplete="off">
+            <label for="passcode">Secret key</label>
+          </div>
+          <div class="col s4 m2">
+            <button name="save" class="btnsize waves-effect waves-light btn '.$color.'"  id="submit" >Save</button>
+          </div>
+        </form>';
+    }
+
+    function unsave() {
+      include("../../../includes/config.php");
+      include("../../../includes/general.php");
+
+      $USER_ID = strtoupper($_SESSION['USER_ID']);
+      global $topic;
+      global $topicName;
+
+      $sql = "UPDATE `user_write` SET `status` = '1', `text` = '' WHERE `topic` = '$topic' AND `uid` = '$USER_ID'";
+      mysqli_query($conn, $sql);
+
+      echo "<script> location.href = '$topicName.php'; </script>";
+    }
+
+    if(isset($_POST['lost-file'])) {
+      unsave();
+    }
+
+    if(isset($_POST['submit'])) {
+      if(!empty($_POST['secret-key'])) {
+        $sql = "SELECT `text` FROM `user_write` WHERE `topic` = '$topic' AND `uid` = '$USER_ID'";
+        $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+        $text = $row['text'];
+
+        $text_arr = explode("~+~", $text);
+        for($i=0; $i<$size; $i++) {
+          $text_arr[$i] = dec_enc("decrypt", $text_arr[$i], $_POST['secret-key']);
+        }
+
+        $_SESSION['display'] = 1;
+        $_SESSION['text_arr'] = $text_arr;
+
+      } else {
+        echo "<script> alert('Enter secret key!'); </script>";
+      }
+    }
+
 ?>
 <html>
     <head>
-      <title>Evaluation</title>
+      <title><?php echo ucfirst($topicName); ?></title>
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="../../../css/materialize.min.css"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -150,9 +262,6 @@
         <li><a href="profile/">Profile</a></li>
     </ul>
 
-
-
-
     <script type='text/javascript'>
         M.AutoInit();
 
@@ -161,101 +270,42 @@
       <div class="row">
         <div class="col s12">
           <div class="card z-depth-2">
-             <div id="l1" class="login center-align <?php echo $color; ?> white-text">EVALUATION</div>
+             <div id="l1" class="login center-align <?php echo $color; ?> white-text"><?php echo strtoupper($topicName); ?></div>
             <div class="card-content">
                 <div class="row mindset" style="margin-left: 2%;">
                   <?php
 
-                    $sql = "SELECT * FROM `write` WHERE `topic` = 'evaluation'";
-                    $counter = 1;
-                    $data = "";
-                    if($result = mysqli_query($conn, $sql)) {
-                      while($row = mysqli_fetch_assoc($result)) {
-                        echo "<p><strong>".$counter.")&nbsp;".$row['question']."</strong></p>";
-                        echo "<br>";
-                        $name = "editor".$counter;
-                        $counter++;
-                        echo "
-                        <textarea class='ckeditor' name=$name id=$name rows='10' cols'80'>
-                        </textarea>
-                        <script>
-                            CKEDITOR.replace( $name,{
-                             } );
+                    $sql = "SELECT `status` FROM `user_write` WHERE `uid` = '$USER_ID' and `topic` = '$topic'";
 
-                        </script>
+                    $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-                        ";
-                        echo "<br>";
+                    $display = 0;
+                    if(!empty($_SESSION['display']))
+                      $display = $_SESSION['display'];
 
-                      }
+                    if($row['status'] == '2' && $display != 1) {
+                      echo '<div class="col s14 m8">
+                        <form method="post" style="text-align: center;" enctype="multipart/form-data">
+                          <div class="input-field col s8 m6">
+                            <input name="secret-key" id="pname" placeholder="Enter secret key" type="text" class="validate" data-length="200" autocomplete="off" autofocus>
+                            <label for="pname">Secret Key</label>
+                            <button name="submit" class="btnsize waves-effect waves-light-btn btn '.$color.'">Submit</button>
+                          </div>
+                        </form>
+                      </div>';
+                      echo '<div class="col s4 m2" style="text-align: center;">
+                        <form method="post">
+                          <button name="lost-file" class="btnsize waves-effect waves-light btn '.$color.'">Lost key</button>
+                        </form>
+                      </div>';
+                    } else {
+                      if(!empty($_SESSION['text_arr']))
+                        displayForm($_SESSION['text_arr']);
+                      else
+                        displayForm();
                     }
 
                   ?>
-
-                  <div class="col s4 m2">
-                    <form method="post">
-                      <a class="btnsize waves-effect waves-light btn <?php echo $color?>" onclick="myFunction()" id="submit">Save</a>
-                    </form>
-
-
-                  </div>
-                  <script>
-
-                  function download(filename, text) {
-                    var element = document.createElement('a');
-                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                    element.setAttribute('download', filename);
-
-                    element.style.display = 'none';
-                    document.body.appendChild(element);
-
-                    element.click();
-
-                    document.body.removeChild(element);
-                  }
-
-                    $(document).ready(function(){
-                      $('#submit').click(function(){
-                      var data = "";
-                      for(var i =1;i<=4;i++){
-                        var name = "editor"+i;
-                        text = "<p>" + CKEDITOR.instances[name].document.getBody().getText() + "</p>\n";
-                        data = data + text;
-                      }
-                        download("Evaluation.txt",data);
-
-                        $.ajax({
-                            type: 'POST',
-                            data:
-                            {
-                              'topic': '6',
-                            },
-                            url: 'updateStatus.php',
-                            dataType: 'json',
-                            success: function(codedata)
-                            {
-                                if(codedata['error'] == 1)
-                                {
-                                  //Error Occured
-                                  M.toast({html: codedata['errorMsg']});
-                                }
-                                else if(codedata['error'] == 0)
-                                {
-                                 //No Error Occured
-                                  window.location = "index.php";
-                                }
-                                else
-                                {
-                                  window.alert("Something is Wrong... Contact Admin");
-                                }
-                            }
-                          });
-                      });
-
-
-                    });
-
-                  </script>
 
                 </div>
 

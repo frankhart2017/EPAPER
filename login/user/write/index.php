@@ -11,6 +11,11 @@
     include_once("../../../includes/config.php");
     include_once("../../../includes/general.php");
 
+    if(!empty($_SESSION['text_arr']))
+      unset($_SESSION['text_arr']);
+    if(!empty($_SESSION['display']))
+      unset($_SESSION['display']);
+
 ?>
 <html>
     <head>

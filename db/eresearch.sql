@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 27, 2019 at 07:27 PM
+-- Generation Time: Feb 02, 2019 at 11:23 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -453,17 +453,23 @@ CREATE TABLE `user_write` (
   `id` int(11) NOT NULL,
   `uid` text NOT NULL,
   `topic` text NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `text` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_write`
 --
 
-INSERT INTO `user_write` (`id`, `uid`, `topic`, `status`) VALUES
-(5, 'RA1611003010876', '6', 1),
-(6, 'RA1611003010876', '1', 1),
-(7, 'RA1611003010876', '4', 1);
+INSERT INTO `user_write` (`id`, `uid`, `topic`, `status`, `text`) VALUES
+(55, 'RA1611003010876', '0', 2, 'Q3g1Y0w2QlZicnU1cjBiQjZwS2JZY1Y1dEVZMlp5azBrK2UwemtOSHJvQT0=~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~SjgySnJSbEVHZjZrMmxhamhQQ3huWkJiYWx4czVyWk1IeE1sVVJ5WWNnST0=~+~'),
+(56, 'RA1611003010876', '2', 2, 'dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~TFpZSXAwUlAxTFBVMjVaNFhCVDBySVRoRytyd2thMkh5Z0JWVDJIN25oRT0=~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~'),
+(57, 'RA1611003010876', '7', 2, 'dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~Yy9HU1pMc05kR3lKZ0Z6RTFsVjE5TUFLZVpHVVJhdzNlellXdDR0d0hZdz0=~+~'),
+(58, 'RA1611003010876', '3', 2, 'dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~akM2RE5PZVE0WjFzYlNWTFRNRDRRNzBLQnVldTdvTXpJbW1RaHNDOXM1ND0=~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~'),
+(59, 'RA1611003010876', '4', 2, 'US9CSlNCOWNIdGhHZE10cmNvUnNqRHVqOVJZNEkwQlFEbTVMTTlEZnh2MjNuTTNhTzBCQUNWSGxsVWdpbkpFaA==~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~'),
+(60, 'RA1611003010876', '6', 2, 'dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~MDJTTWhlZ2MwNFpmbjN6Y3pPMEZzaGxDaStRdzVWUXZ1K2VyK09DT2tPRT0=~+~'),
+(61, 'RA1611003010876', '5', 2, 'dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~N3FnanE4bzBNNzhmSkZqenpwaWpiZWVWNkoxZXR4elFvdVJJOW5vYnF4WT0=~+~'),
+(62, 'RA1611003010876', '1', 2, 'Q29mYUdkdDZjeUJBNDJDNmw3NTZkbldWNXZaUkgzUnN5Qm1wMGtKTVd1YzNlWkJVclpFK085TWllaExJbHBUM3ErUW0vaEQzcHJlTVdoSkNzbFJmeDVER1liV08xTXpLMzNLYmVUSXB3aHZCU05mTHpLRHhid2VjYUc4RGlXYjFnc0plWXdMV3FvaWs1M1MrOXlCWm54YndaWWxna1ovdVZ2SVVMWlp0VUJvPQ==~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~dnJzVlBDYmRYT3ZvcEdRUDE3OXBGZz09~+~VzJjOC9PelNjdGNTai9VSWNEY1VrREVPMzBtbVN5aGpPVGlhbHRKd3Rmbz0=~+~NGpDVjVtdUIrOUgvK1pKa3VxUmJBOEhRd1IrSnNPYk5aeENHQmJsa3FCMD0=~+~');
 
 -- --------------------------------------------------------
 
@@ -543,7 +549,7 @@ INSERT INTO `write` (`id`, `question`, `topic`) VALUES
 (6, 'Why was it done ?', 'abstract'),
 (7, 'Why is this problem hard ? and /or the difficulty other solutions face ? ', 'abstract'),
 (8, 'What did you discover? or How did you approach the problem differently? ', 'abstract'),
-(9, 'When and where was it done ? (', 'abstract'),
+(9, 'When and where was it done ? ', 'abstract'),
 (10, 'Who/Whom got benefitted ? ', 'abstract'),
 (11, 'What is the specific detail about the solution.', 'abstract'),
 (12, 'What is a quick gist of the evidence (say a proof, an implementation or quantitative result) we have for our approach.', 'abstract'),
@@ -579,7 +585,7 @@ INSERT INTO `write` (`id`, `question`, `topic`) VALUES
 (46, 'What did we evaluate in this study ? ', 'evaluation'),
 (47, 'How does our finding compare / contrast / improve itself with those of others?', 'evaluation'),
 (48, 'Are there any unexpected findings / innovations?', 'evaluation'),
-(49, 'What did we learn from the results and what can we interpret as findings, what is its significance? ', 'evaltuation'),
+(49, 'What did we learn from the results and what can we interpret as findings, what is its significance? ', 'evaluation'),
 (50, 'Are there any limitations / discrepancies / generalizability / interpretations etc ?', 'evaluation'),
 (51, 'What did we expect and what did we find? ', 'conclusion'),
 (52, 'What is the significance that we could derive from this study and why did it occur?', 'conclusion'),
@@ -765,7 +771,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `user_write`
 --
 ALTER TABLE `user_write`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `work`
