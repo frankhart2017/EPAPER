@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\begin{document}
+
+	itle{Introduction to \LaTeX{}}
+\author{Author's Name}
+
+\maketitle
+
+\begin{abstract}
+
+nd{abstract}
+
+\section{introduction}
+
+
+\section{analysis}
+
+
+\section{design}
+
+
+\section{development}
+
+
+\section{implement}
+
+
+\section{evaluation}
+
+
+\section{conclusion}
+
+
+nd{document}

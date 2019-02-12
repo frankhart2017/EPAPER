@@ -14,31 +14,88 @@
     include("encrypt.php");
 
     if(isset($_POST['extract'])) {
-
-      $sql = "SELECT * FROM `user_write` WHERE `uid` = '$USER_ID'";
-
-      $text_arr = Array("abstract" => "", "introduction" => "", "analysis" => "", "design" => "",
-      "development" => "", "implement" => "", "evaluation" => "", "conclusion" => "");
-
-      $id_to_text = Array("abstract", "introduction", "analysis", "design", "development", "implement", "evaluation", "conclusion");
-
-      if($result = mysqli_query($conn, $sql)) {
-        while($row = mysqli_fetch_assoc($result)) {
-          $text_arr[$id_to_text[$row["topic"]]] = $row["text"];
-        }
+      if($_POST["abstract"]==""){
+        print_r("type");
       }
+      else {
+        $sql = "SELECT * FROM `user_write` WHERE `uid` = '$USER_ID'";
 
-      while()
+        $text_arr = Array("abstract" => "", "introduction" => "", "analysis" => "", "design" => "",
+        "development" => "", "implement" => "", "evaluation" => "", "conclusion" => "");
 
-      $text_arr = explode("~+~", $row['text']);
+        $id_to_text = Array("abstract", "introduction", "analysis", "design", "development", "implement", "evaluation", "conclusion");
 
-      for($i=0; $i<sizeof($text_arr); $i++) {
-        $text_arr[$i] = dec_enc("decrypt", $text_arr[$i], $_POST['abstract']);
+        if($result = mysqli_query($conn, $sql)) {
+          while($row = mysqli_fetch_assoc($result)) {
+
+            //$text_arr[$id_to_text[$row["topic"]]] = $row["text"];
+
+
+
+            $s = $row['topic'];
+            //print_r($id_to_text[$s]);
+            $s1 = $id_to_text[$s];
+            $text_arr = explode("~+~", $row['text']);
+
+
+            for($i=0; $i<sizeof($text_arr); $i++) {
+              $text_arr[$i] = dec_enc("decrypt", $text_arr[$i], $_POST[$s1]);
+              //print_r($text_arr[$i]);
+            }
+            $string = implode('', $text_arr);
+            $a[$row['topic']] = $string;
+
+
+          }
+          ksort($a);
+
       }
+  }
 
-      print_r($text_arr);
-    }
+  $paper = "\documentclass{article}
+  \usepackage{graphicx}
 
+  \begin{document}
+
+  \title{Introduction to \LaTeX{}}
+  \author{Author's Name}
+
+  \maketitle
+
+  \begin{abstract}
+  0
+  \end{abstract}
+
+  \section{introduction}
+  1
+
+  \section{analysis}
+  2
+
+  \section{design}
+  3
+
+  \section{development}
+  4
+
+  \section{implement}
+  5
+
+  \section{evaluation}
+  6
+
+  \section{conclusion}
+  7
+
+  \end{document}";
+  for($i=0;$i<8;$i++){
+    $pos = strpos($paper, (string)$i);
+    $paper = substr_replace($paper, $a[$i], $pos,1);
+  }
+  $myfile = fopen("testfile.txt", "w");
+    fwrite($myfile, $paper);
+    fclose($myfile);
+}
 ?>
 <html>
     <head>
@@ -196,40 +253,41 @@
                       <label  for="email">Abstract Key</label>
                     </div>
 
-                    <!-- <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+
+                    <div class="input-field col s12 m6">
+                      <input id="email" type="text" name="introduction"  class="validate">
                       <label  for="email">Introduction Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="analysis"  class="validate">
                       <label  for="email">Analysis Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="design"  class="validate">
                       <label  for="email">Design Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="development"  class="validate">
                       <label  for="email">Development Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="implement"  class="validate">
                       <label  for="email">Implement Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="evaluation"  class="validate">
                       <label  for="email">Evaluation Key</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                      <input id="email" type="text" name="email"  class="validate">
+                      <input id="email" type="text" name="conclusion"  class="validate">
                       <label  for="email">Conclusion Key</label>
-                    </div> -->
+                    </div>
 
                     <div class="row col s12 m12 center">
                       <button class="right col s12 m4 btnsize waves-effect waves-light btn <?php echo $color; ?>" name="extract" id="btn1">EXTRACT</button>

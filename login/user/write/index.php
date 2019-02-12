@@ -162,6 +162,10 @@
 
       </div>
 
+      <div class="row col s12 m12 center">
+        <a href="key.php"><button class="right col s12 m4 btnsize waves-effect waves-light btn <?php echo $color; ?>" name="extract" id="btn1">DOWNLOAD PAPER</button></a> 
+      </div>
+
     </div>
 
     </body>
