@@ -9,9 +9,7 @@
   \maketitle
 
   \begin{abstract}
-  <img alt="\sum_{i}^{n}(i)" src="http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%7D%5E%7Bn%7D%28i%29" />
-
-hello there
+  hello there<img alt="" src="/EPAPER/login/user/write/ckeditor/ckfinder/upload/images/photo.jpg" style="height:281px; width:235px" />
 ho ho ho
 
   nd{abstract}

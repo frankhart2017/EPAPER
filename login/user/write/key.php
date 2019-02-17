@@ -30,8 +30,6 @@
 
             //$text_arr[$id_to_text[$row["topic"]]] = $row["text"];
 
-
-
             $s = $row['topic'];
             //print_r($id_to_text[$s]);
             $s1 = $id_to_text[$s];
@@ -54,7 +52,6 @@
 //   for($i = 0;$i<8;$i++){
 //   print_r($a[$i]);
 // }
-print_r($a[1]);
   $paper = "\documentclass{article}
   \usepackage{graphicx}
 
@@ -91,14 +88,28 @@ print_r($a[1]);
   `7`
 
   \end{document}";
+  $img_srcs = Array();
+
+  $j = 0;
+
   for($i=0;$i<8;$i++){
     $pos = strpos($paper, "`".(string)$i."`");
     $paper = substr_replace($paper, $a[$i], $pos,3);
+    $pos1 = strpos($a[$i],"img alt=\"\" src=");
+
   }
   $string_array = explode("<p>",$paper);
   $paper = implode("",$string_array);
   $string_array = explode("</p>",$paper);
   $paper = implode("",$string_array);
+
+  preg_match_all('%<img.*?src=["\'](.*?)["\'].*?/>%i', $paper, $img_srcs);
+
+  mkdir($USER_ID);
+
+  for($i=0; $i<count($img_srcs[1]); $i++) {
+    copy($img_srcs[1][$i], $USER_ID."/$i.jpg");
+  }
 
   $myfile = fopen("testfile.txt", "w");
     fwrite($myfile, $paper);
