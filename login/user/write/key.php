@@ -51,7 +51,10 @@
 
       }
   }
-
+//   for($i = 0;$i<8;$i++){
+//   print_r($a[$i]);
+// }
+print_r($a[1]);
   $paper = "\documentclass{article}
   \usepackage{graphicx}
 
@@ -63,39 +66,56 @@
   \maketitle
 
   \begin{abstract}
-  0
+  `0`
   \end{abstract}
 
   \section{introduction}
-  1
+  `1`
 
   \section{analysis}
-  2
+  `2`
 
   \section{design}
-  3
+  `3`
 
   \section{development}
-  4
+  `4`
 
   \section{implement}
-  5
+  `5`
 
   \section{evaluation}
-  6
+  `6`
 
   \section{conclusion}
-  7
+  `7`
 
   \end{document}";
   for($i=0;$i<8;$i++){
-    $pos = strpos($paper, (string)$i);
-    $paper = substr_replace($paper, $a[$i], $pos,1);
+    $pos = strpos($paper, "`".(string)$i."`");
+    $paper = substr_replace($paper, $a[$i], $pos,3);
   }
+  $string_array = explode("<p>",$paper);
+  $paper = implode("",$string_array);
+  $string_array = explode("</p>",$paper);
+  $paper = implode("",$string_array);
+
   $myfile = fopen("testfile.txt", "w");
     fwrite($myfile, $paper);
     fclose($myfile);
+    if (file_exists($myfile)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($myfile).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($myfile));
+        readfile($myfile);
+        exit;
+    }
 }
+
 ?>
 <html>
     <head>

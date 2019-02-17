@@ -1,36 +1,49 @@
 \documentclass{article}
-\usepackage{graphicx}
+  \usepackage{graphicx}
 
-\begin{document}
+  \begin{document}
 
-	itle{Introduction to \LaTeX{}}
-\author{Author's Name}
+  	itle{Introduction to \LaTeX{}}
+  \author{Author's Name}
 
-\maketitle
+  \maketitle
 
-\begin{abstract}
+  \begin{abstract}
+  <img alt="\sum_{i}^{n}(i)" src="http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%7D%5E%7Bn%7D%28i%29" />
 
-nd{abstract}
+hello there
+ho ho ho
 
-\section{introduction}
+  nd{abstract}
 
-
-\section{analysis}
-
-
-\section{design}
-
-
-\section{development}
+  \section{introduction}
+  <img alt="" src="/EPAPER/login/user/write/ckeditor/ckfinder/upload/images/dp.jpg" style="height:100px; width:98px" />
+very nice
+very good
 
 
-\section{implement}
+  \section{analysis}
+  ok very very good
 
 
-\section{evaluation}
+  \section{design}
+  my own design style
 
 
-\section{conclusion}
+  \section{development}
+  no new thing is created
 
 
-nd{document}
+  \section{implement}
+  good reaction
+
+
+  \section{evaluation}
+  ok good evaluation
+
+
+  \section{conclusion}
+  ye hai mera conclusion
+
+
+  nd{document}
