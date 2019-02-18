@@ -110,21 +110,20 @@
   for($i=0; $i<count($img_srcs[1]); $i++) {
     copy($img_srcs[1][$i], $USER_ID."/$i.jpg");
   }
+  $zipname = "abc.rar";
 
+    //code for downloading rar file in system
+    header('Content-Disposition: attachment; filename='.$zipname.'');
+    header("content-type:application/octent-stream");
+    header('Content-Length: ' . filesize($zipname));
+    readfile($zipname);
+
+// print_r($img_srcs[1][1]);
+// echo '<a id="download" href="$img_srcs[1][1]" download=$USER_ID."jpg">Download</a>';
   $myfile = fopen("testfile.txt", "w");
     fwrite($myfile, $paper);
     fclose($myfile);
-    if (file_exists($myfile)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.basename($myfile).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($myfile));
-        readfile($myfile);
-        exit;
-    }
+
 }
 
 ?>
